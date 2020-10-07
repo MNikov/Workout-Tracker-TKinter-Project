@@ -37,3 +37,4 @@ button = tk.Button(lower_frame, text='Submit')
 # TODO make the button get all the selected exercises and pass them to the function
 button.place(relx=0.5, rely=1, anchor='s')
 root.mainloop()
+#check name update
