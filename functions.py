@@ -12,3 +12,12 @@ def submit_workout(exercises):
         for exercise in exercises:
             report.write(f'— {exercise}\n')
         report.write('-' * 20)
+
+
+def get_values(vars):
+    checked = []
+    for v in vars:
+        value = v.get()
+        if value == 1:
+            checked.append(v)
+    return checked
