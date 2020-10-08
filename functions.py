@@ -6,18 +6,10 @@ desktop_path = desktop + os.path.sep + 'MyWorkouts.txt'
 time = datetime.datetime.now()
 
 
-def submit_workout(exercises):
+def submit_workout(exercise_dict):
     with open(desktop_path, 'a') as report:
         report.write(f'{time.date()} {time.strftime("%A")}\n')
-        for exercise in exercises:
-            report.write(f'— {exercise}\n')
+        for exercise in exercise_dict:
+            if exercise_dict[exercise].get() == 1:
+                report.write(f'— {exercise}\n')
         report.write('-' * 20)
-
-
-def get_values(vars):
-    checked = []
-    for v in vars:
-        value = v.get()
-        if value == 1:
-            checked.append(v)
-    return checked
