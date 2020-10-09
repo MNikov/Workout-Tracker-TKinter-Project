@@ -1,9 +1,15 @@
 import tkinter as tk
-from exercises import exercises
 import functions as fn
+from exercises import exercises
 
 root = tk.Tk()
-root.geometry('500x500')
+window_w = 500
+window_h = 500
+screen_w = root.winfo_screenwidth()
+screen_h = root.winfo_screenheight()
+x = (screen_w / 2) - (window_w / 2)
+y = (screen_h / 2) - (window_h / 2) - 25
+root.geometry('%dx%d+%d+%d' % (window_w, window_h, x, y))
 root.resizable(False, False)
 
 background_image = tk.PhotoImage(file='background.png')
@@ -33,7 +39,10 @@ for i in range(0, len(exercises)):
         r += 1
         c = 0
 
-submit_button = tk.Button(root, text='SUBMIT', bd=5, padx=25, pady=2, bg='snow4', activebackground='orangered', command=fn.submit_workout(all_vars_dict))
+submit_button = tk.Button(root, text='SUBMIT', bd=5, padx=25, pady=2, bg='snow4',
+                          activebackground='orangered', command=lambda: fn.submit_workout(all_vars_dict))
 submit_button.place(relx=0.5, rely=1, anchor='s', y=-50)
 
 root.mainloop()
+
+# TODO get proper coordinates for window by debugging it, detail the button, check for bold label, detail checkboxes
