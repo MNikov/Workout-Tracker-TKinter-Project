@@ -1,8 +1,58 @@
 import tkinter as tk
-import functions as fn
-from exercises import exercises
+import os
+from datetime import date
+
+
+def submit_workout(exercise_dict):
+    with open(desktop_path, 'a') as report:
+        report.write(f'{">" * 3} {today.strftime("%d/%m/%Y")}\n')
+        for exercise in exercise_dict:
+            if exercise_dict[exercise].get() == 1:
+                report.write(f'— {exercise}\n')
+        report.write('\n')
+
+
+desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+desktop_path = desktop + os.path.sep + 'MyWorkouts.txt'
+today = date.today()
+
+exercises = sorted([
+    'Pull ups',
+    'Squats',
+    'Dips',
+    'Lunges',
+    'Deadlifts',
+    'Push ups',
+    'Bench press',
+    'Biceps curls',
+    'Triceps extensions',
+    'Roman deadlift',
+    'Front squats',
+    'Military press',
+    'Running',
+    'Calf raises',
+    'Sit ups',
+    'Plank',
+    'Muscle ups',
+    'Front lever',
+    'OAPs',
+    'Swimming',
+    'Rope skipping',
+    'Rows',
+    'Ring muscle ups',
+    'Back lever',
+    'Planche',
+    'Leg press',
+    'Nordic curls',
+    'HSPUs',
+    'Ring dips',
+    'Isometric holds',
+
+])
 
 root = tk.Tk()
+root.title('Workout Tracker')
+root.iconbitmap('C:\\Users\\Mimo\\Documents\\GitHub\\Workout-Tracker-TKinter-Project\\icon.ico')
 window_w = 500
 window_h = 500
 screen_w = root.winfo_screenwidth()
@@ -12,7 +62,8 @@ y = (screen_h / 2) - (window_h / 2) - 25
 root.geometry('%dx%d+%d+%d' % (window_w, window_h, x, y))
 root.resizable(False, False)
 
-background_image = tk.PhotoImage(file='background.png')
+background_image = tk.PhotoImage(
+    file='C:\\Users\\Mimo\\Documents\\GitHub\\Workout-Tracker-TKinter-Project\\background.png')
 background_label = tk.Label(root, image=background_image)
 background_label.place(relwidth=1, relheight=1)
 
@@ -32,7 +83,7 @@ for i in range(0, len(exercises)):
     var = tk.IntVar()
     all_vars_dict[exercises[i]] = var
     cb = tk.Checkbutton(lower_frame, text=exercises[i], variable=var, onvalue=1, offvalue=0,
-                        height=1, width=15, anchor='w')
+                        height=1, width=15, anchor='w', bg='snow4', relief='raised')
     cb.grid(row=r, column=c)
     c += 1
     if c == 3:
@@ -40,9 +91,7 @@ for i in range(0, len(exercises)):
         c = 0
 
 submit_button = tk.Button(root, text='SUBMIT', bd=5, padx=25, pady=2, bg='snow4',
-                          activebackground='orangered', command=lambda: fn.submit_workout(all_vars_dict))
+                          activebackground='orangered', command=lambda: submit_workout(all_vars_dict))
 submit_button.place(relx=0.5, rely=1, anchor='s', y=-50)
 
 root.mainloop()
-
-# TODO get proper coordinates for window by debugging it, detail the button, check for bold label, detail checkboxes
