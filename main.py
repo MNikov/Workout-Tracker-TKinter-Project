@@ -52,7 +52,7 @@ exercises = sorted([
 
 root = tk.Tk()
 root.title('Workout Tracker')
-root.iconbitmap('C:\\Users\\Mimo\\Documents\\GitHub\\Workout-Tracker-TKinter-Project\\icon.ico')
+# root.iconbitmap('icon.ico')
 window_w = 500
 window_h = 500
 screen_w = root.winfo_screenwidth()
@@ -62,9 +62,9 @@ y = (screen_h / 2) - (window_h / 2) - 25
 root.geometry('%dx%d+%d+%d' % (window_w, window_h, x, y))
 root.resizable(False, False)
 
-background_image = tk.PhotoImage(
-    file='C:\\Users\\Mimo\\Documents\\GitHub\\Workout-Tracker-TKinter-Project\\background.png')
-background_label = tk.Label(root, image=background_image)
+# background_image = tk.PhotoImage(
+#     file='background.png')
+background_label = tk.Label(root)
 background_label.place(relwidth=1, relheight=1)
 
 upper_frame = tk.Frame(root, bg='snow4', bd=5)
